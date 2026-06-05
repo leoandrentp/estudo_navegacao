@@ -1,0 +1,117 @@
+Algoritmo "Robo_Grid_2D"
+
+
+//Criando um algoritimo no qual um robo tem uma posicao inicial (x,y) e deve se movimentar ate um alvo
+
+//1 - declarar as variaveis globais posicao do robo, alvo, tamanho do espaco de movimento
+//2 - criar as funcoes de movimento e mapa
+//3 - aplicacao da logica (if/else)
+
+Var
+// secao de declaracoes das variaveis
+ 
+ altura, largura: inteiro
+ robo_x, robo_y: inteiro
+ alvo_x, alvo_y: inteiro
+ comando: caractere
+
+procedimento mover_norte()
+inicio
+      se robo_y > 0 entao
+         robo_y <- robo_y - 1
+      fimse
+fimprocedimento
+procedimento mover_sul()
+inicio
+       se robo_y  < altura entao
+          robo_y <- robo_y + 1
+       fimse
+fimprocedimento
+procedimento mover_leste()
+inicio
+      se robo_x  < largura
+         robo_x <- robo_x + 1
+      fimse
+fimprocedimento
+procedimento mover_oeste()
+inicio
+      se robo_x > 0
+         robo_x <- robo_X - 1
+      fimse
+fimprocedimento
+procedimento desenhar_mapa()
+var
+   x, y: inteiro //variaveis locais para desenhar as linhas e colunar
+inicio
+      limpatela
+      para y de 0 ate ALTURA - 1 faca // 1 - loop para "apontar" a linha
+
+
+        para x de 0 ate LARGURA - 1 faca // 2 - desenho de cada coluna indo linha por linha
+
+            // 3 - logica para o desenho das coordenadas
+
+           se (x = robo_x) e (y = robo_y) entao
+              escreva("R")
+           senao
+                se (x = alvo_x) e (y = alvo_y)entao
+                escreva("A")
+                senao
+                     escreva(". ") // espaço vazio
+                fimse
+           fimse
+
+           fimpara //acabando com o loop das colunas
+
+           escreval("") // quebra da linha para a próxima
+
+    fimpara // fim do loop das linhas
+
+    escreval("")
+    escreval("Posição do Robô: (", robo_x, ", ", robo_y, ")")
+fimprocedimento
+    
+Inicio
+// Seção de Comandos, procedimento, funções, operadores, etc...
+
+// 1 - declarar valores para as variáveis
+// 2 - iniciar loop
+// 3 - aplicação dos comandos com as funções
+
+altura <- 5
+largura <- 5
+robo_x <- 1
+robo_y <- 2
+alvo_x <- 4
+alvo_y <- 4
+
+repita
+      desenhar_mapa()
+      
+escreva("Digite o comando (w=norte, s=sul, a=oeste, d=leste, q=sair): ")
+leia(comando)
+
+se comando = "w" entao
+   mover_norte()
+senao
+     se comando = "s" entao
+        mover_sul()
+     senao
+          se comando = "a" entao
+             mover_oeste()
+          senao
+               se comando = "d" entao
+                  mover_leste()
+               senao
+                    se coamndo = "q" entao
+                       escreva("Encerrando o Programa ")
+                    senao
+                         escreva("Comando inválido ")
+                    fimse
+               fimse
+          fimse
+     fimse
+fimse
+ate comando = "q"
+
+Fimalgoritmo
